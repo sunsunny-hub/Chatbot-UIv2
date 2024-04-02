@@ -49,15 +49,15 @@ pipeline{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
                        sh "docker build -t chatbot ."
-                       sh "docker tag chatbot sreedhar8897/chatbot:latest "
-                       sh "docker push sreedhar8897/chatbot:latest "
+                       sh "docker tag chatbot surajsingh16/chatbot:latest "
+                       sh "docker push surajsingh16/chatbot:latest "
                     }
                 }
             }
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image sreedhar8897/chatbot:latest > trivy.json" 
+                sh "trivy image surajsingh16/chatbot:latest > trivy.json" 
             }
         }
         stage ("Remove container") {
@@ -68,19 +68,9 @@ pipeline{
         }
         stage('Deploy to container'){
             steps{
-                sh 'docker run -d --name chatbot -p 3000:3000 sreedhar8897/chatbot:latest'
+                sh 'docker run -d --name chatbot -p 3000:3000 surajsingh16/chatbot:latest'
             }
         }
-        stage('Deploy to kubernetes'){
-            steps{
-                withAWS(credentials: 'aws-key', region: 'us-east-1'){
-                script{
-                    withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-                       sh 'kubectl apply -f k8s/chatbot-ui.yaml'
-                  }
-                }
-            }
-        }
-        }
+        
     }
     }
