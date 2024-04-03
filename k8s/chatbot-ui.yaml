@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: chatbot
-        image: sreedhar8897/chatbot:latest
+        image: surajsingh16/chatbot:latest
         ports:
         - containerPort: 3000   # Use port 3000
 
