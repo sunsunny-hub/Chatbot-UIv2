@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket         = "chatbot-ui-v2"
-    region         = "us-east-1"
+    region         = "ap-south-1"
     key            = "Chatbot-UIv2/EKS-TF/terraform.tfstate"
     dynamodb_table = "Lock-Files"
     encrypt        = true
