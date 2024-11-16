@@ -10,7 +10,7 @@ pipeline{
     stages {
         stage('Checkout from Git'){
             steps{
-                git branch: 'main', url: 'https://github.com/sunsunny-hub/Chatbot-UIv2.git'
+                git branch: 'main', url: 'https://github.com/Durgaprasad228/Chatbot-UIv2.git'
             }
         }
         stage('Install Dependencies') {
@@ -49,8 +49,8 @@ pipeline{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
                        sh "docker build -t chatbot ."
-                       sh "docker tag chatbot surajsingh16/chatbot:latest "
-                       sh "docker push surajsingh16/chatbot:latest "
+                       sh "docker tag chatbot durgaprasad337/chatbot:latest "
+                       sh "docker push durgaprasad337/chatbot:latest "
                     }
                 }
             }
@@ -68,7 +68,7 @@ pipeline{
         }
         stage('Deploy to container'){
             steps{
-                sh 'docker run -d --name chatbot -p 3000:3000 surajsingh16/chatbot:latest'
+                sh 'docker run -d --name chatbot -p 3000:3000 durgaprasad3337/chatbot:latest'
             }
         }
         stage('Deploy to kubernetes'){
