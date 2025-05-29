@@ -10,7 +10,7 @@ def call_azure_openai(prompt_text):
     endpoint = os.environ["AZURE_OPENAI_ENDPOINT"]
     api_key = os.environ["AZURE_OPENAI_API_KEY"]
     
-    url = f"{endpoint}/openai/deployments/gpt-4.1/completions?api-version=2023-05-15"
+    url = f"{endpoint}/openai/deployments/gpt-4.1/completions?api-version=2025-04-14"
     
     headers = {
         "Content-Type": "application/json",
